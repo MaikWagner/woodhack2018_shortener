@@ -31,7 +31,7 @@ class LinkShrink
 	{
 		$sources = [];
 
-		if (preg_match('/.*\[([0-9,].{3,})\]$/', $campaignSource, $matches) && $customLink == '') {
+		if (preg_match('/.*\[([0-9,].+)\]$/', $campaignSource, $matches) && $customLink == '') {
 			if (count($numbers = explode(',', $matches[1])) == 2) {
 				for ($i = $numbers[0]; $i <= $numbers[1]; $i++) {
 					$sources[] = $i;	
@@ -40,7 +40,6 @@ class LinkShrink
 			}
 		} else {
 			$sources[] = '';
-			$campaignSource = substr($campaignSource, 0, strpos($campaignSource, '['));
 		}
 
 		foreach ($sources as $postfix) {
